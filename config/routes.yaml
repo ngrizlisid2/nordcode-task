@@ -1,0 +1,48 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+api_post_show:
+  path:       /
+  controller: App\Controller\DefaultController::index
+  methods:    GET
+
+login_page:
+  path:       /login
+  controller: App\Controller\UserLoginController::loginPage
+  methods:    GET
+
+login_form_post:
+  path:       /login
+  controller: App\Controller\UserLoginController::loginUser
+  methods:    POST
+
+register_page:
+  path:       /register
+  controller: App\Controller\UserLoginController::registerPage
+  methods:    GET
+
+register_post:
+  path:       /register
+  controller: App\Controller\UserLoginController::registerUser
+  methods:    POST
+
+user_tasks_page:
+  path:       /tasks
+  controller: App\Controller\TaskController::tasksListPage
+  methods:    GET
+
+new_task_page:
+  path:       /new_task
+  controller: App\Controller\TaskController::newTaskPage
+  methods:    GET
+
+new_task_post:
+  path:       /new_task
+  controller: App\Controller\TaskController::createNewTask
+  methods:    POST
+
+tasks_csv:
+  path:       /tasks.csv
+  controller: App\Controller\TaskController::generateCsvFile
+  methods:    GET
+

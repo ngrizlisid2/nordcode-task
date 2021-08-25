@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+ {% block title %}task new {% endblock %}
+
+{% block body %}
+    {% if error_text is defined %}
+        {{ error_text }}
+    {% endif %}
+    <form method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Create new task</h1>
+
+        <label for="inputTitle">Title</label>
+        <input type="text" value="" name="title" id="inputTitle" class="form-control" required autofocus>
+        <br>
+        <label for="inputComment">Comment</label>
+        <textarea name="comment" id="inputComment" class="form-control"></textarea>
+        <br>
+        <label for="inputDate">Date</label>
+        <input type="date" value="{{ "now"|date("Y-m-d") }}" name="date" id="inputDate" class="form-control" required>
+        <br>
+        <label for="inputTimeSpent">Time Spent</label>
+        <input type="number" value="0" name="time_spent" id="inputTimeSpent" class="form-control" required>
+        <br>
+        <button class="btn btn-lg btn-primary" type="submit">
+            create
+        </button>
+    </form>
+{% endblock %}

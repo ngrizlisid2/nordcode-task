@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+ {% block title %} tasks {% endblock %}
+
+ {% block body %}
+     <div>
+         <a href="{{ path('new_task_page') }}" class="btn btn-primary btn-lg square" role="button">new task</a>
+     </div>
+     <div>
+         <form class="form-group" action="{{ path('tasks_csv') }}" method="get" target="_blank">
+             <label for="inputDateFrom">Date from</label>
+             <input type="date" value="{{ "now"|date("Y-m-d") }}" name="date_from" id="inputDateFrom" class="form-control" required>
+             <br>
+             <label for="inputDateTo">Date to</label>
+             <input type="date" value="{{ "now"|date("Y-m-d") }}" name="date_to" id="inputDateTo" class="form-control" required>
+             <button class="btn btn-lg btn-primary" type="submit">
+                 get csv
+             </button>
+         </form>
+     </div>
+
+     <div>
+         {% if tasks|length > 0 %}
+             <table style="width:50%">
+                 <tr>
+                     <th>id</th>
+                     <th>title</th>
+                     <th>date</th>
+                     <th>time spent min.</th>
+                 </tr>
+                 {% for task in tasks %}
+                     <tr>
+                         <td>{{ task.getId }}</td>
+                         <td>{{ task.getTitle }}</td>
+                         <td>{{ task.getDate|date('Y-m-d') }}</td>
+                         <td>{{ task.getTimeSpent }}</td>
+                     </tr>
+                 {% endfor %}
+             </table>
+         {% else %}
+             there are no tasks
+         {% endif %}
+     </div>
+     <div>
+         {% if page > 1 %}
+         <a href="{{ path('user_tasks_page') }}?page={{ page -1 }}" class="btn btn-primary btn-lg square" role="button">prev page</a>
+         {% endif %}
+         &nbsp;<a href="{{ path('user_tasks_page') }}?page={{ page +1 }}" class="btn btn-primary btn-lg square" role="button">next page</a>
+     </div>
+
+ {% endblock %}
